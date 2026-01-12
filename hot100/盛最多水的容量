@@ -1,0 +1,22 @@
+也是双指针类型的，这道题我是看了好几遍才明白是什么意思
+>从一排数字里选两个，一个当左墙一个当右墙，水高取矮的，水宽取两个数字之间的距离，求最大值
+class Solution(object):
+    def maxArea(self, height):
+        n=len(height)
+        max_s=0
+        l=0
+        r=n-1
+        while 1:
+            #双指针遍历完后退出循环
+            if l>=r:
+                return max_s
+            #计算水量
+            temp = (r-l)*min(height[l],height[r])
+            #更新最大水量
+            if temp>max_s:
+                max_s=temp
+            #总是移动最矮的柱子
+            if height[l]>height[r]:
+                r-=1
+            else:
+                l+=1
