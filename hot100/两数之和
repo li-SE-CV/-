@@ -1,1 +1,24 @@
-1.时间复杂度是($n^2$)
+1.时间复杂度是(n)--哈希表实现
+```python
+class Solution:
+    def twoSum(self, nums, target):
+        # 创建一个字典，用来记录已经看到的数字及它的下标
+        seen = {}  # 数字 -> 下标
+
+        # 遍历数组
+        for i, num in enumerate(nums):
+            # 计算还差多少才能凑成目标
+            need = target - num
+
+            # 如果这个差值已经在字典里，说明找到了答案
+            if need in seen:
+                return [seen[need], i]
+
+            # 否则把当前数字和下标存入字典
+            seen[num] = i
+
+        # 如果没有答案（按题目假设不会发生），返回空列表
+        return []
+
+2.时间复杂度(n^2)--暴力遍历
+```python
