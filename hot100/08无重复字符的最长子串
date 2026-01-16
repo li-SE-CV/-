@@ -1,0 +1,15 @@
+滑动窗口来解决，刚开始对于滑动窗口的概念很模糊，看了gpt给的步骤明白多了，就是向右边不断扩元素，遇到重复字符，逐个删除左边元素直至无重复
+
+双指针+哈希
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        ans=0
+        cnt=Counter()
+        left=0
+        for right,c in enumerate(s):
+            cnt[c]+=1
+            while cnt[c]>1:
+                cnt[s[left]]-=1
+                left+=1
+            ans=max(ans,right-left+1)
+        return ans
