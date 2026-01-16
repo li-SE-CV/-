@@ -1,1 +1,28 @@
+首先这道题真的很难想，代码用时很长，只击败了9%（等完成hot100后再来试试）
+
+用来双数列，代码很简单
+class Solution(object):
+    def trap(self, height):
+        n=len(height)
+        pre=[0]*n
+        pre[0]=height[0]
+        for i in range(1,n):
+            pre[i]=max(pre[i-1],height[i])
+        
+        suf=[0]*n
+        suf[-1]=height[-1]
+        for i in range(n-2,-1,-1):
+            suf[i]=max(suf[i+1],height[i])
+        ans=0
+
+        for h,p,s in zip(height,pre,suf):
+            ans+=min(p,s)-h
+        return ans
+#############################################
+for h, p, s in zip(height, pre, suf):
+等价于
+for i in range(len(height)):
+    h = height[i]
+    p = pre[i]
+    s = suf[i]
 
