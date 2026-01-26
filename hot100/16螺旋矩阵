@@ -1,0 +1,34 @@
+感觉这个题目有难度，就是题目其实是看的懂的，但是实际上写代码的感觉还是一头雾水，看了灵神的题解还是没看懂
+下面是gpt给出的解释：
+ans.append(matrix[i][j])   # 拿一个
+matrix[i][j] = None        # 标记已走
+
+x, y = 试探下一步
+if 撞墙或走过:
+    转向
+
+i, j = 真正走一步
+
+代码是：
+DIRS = (0, 1), (1, 0), (0, -1), (-1, 0)  # 右下左上
+
+class Solution:
+    def spiralOrder(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+        ans = []
+        i = j = di = 0 #i-当前行，j-当前列，di-当前方向（0-3）
+        for _ in range(m * n):  # 一共走 mn 步
+            ans.append(matrix[i][j])
+            matrix[i][j] = None  # 标记，表示已经访问过（已经加入答案）
+
+            #先试探
+            x, y = i + DIRS[di][0], j + DIRS[di][1]  # 下一步的位置
+            # 如果 (x, y) 出界或者已经访问过
+            if x < 0 or x >= m or y < 0 or y >= n or matrix[x][y] is None:
+                di = (di + 1) % 4  # 右转 90°
+
+            #后真正走
+            i += DIRS[di][0]
+            j += DIRS[di][1]  # 走一步
+        return ans
+
