@@ -1,7 +1,9 @@
-用空间换时间-用set集合
+用空间换时间-用set集合,对于其它的困难题，这道困难题简单多了代码也容易理解
 时间复杂度为O（n）
 空间复杂度为O（n）
-目前已知set的
+dict与set的区别（元素唯一，无序）：
+dict = 带 value 的 hash 表
+set = 只有 key 的 hash 表
 
 代码为：
 class Solution:
